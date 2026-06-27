@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabari Project Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Basic Setup & Responsive Design */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+        /* Simple Header Layout */
+        header {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* 10 Projects Grid Layout */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        /* Hover Effect: Medium and Clean */
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 3px solid #1e3a8a;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: #1e3a8a;
+        }
+
+        .project-info p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            height: 70px;
+            overflow: hidden;
+        }
+
+        .visit-btn {
+            display: block;
+            text-align: center;
+            background-color: #1e3a8a;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .visit-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* JavaScript Interactive Popup (Modal) Style */
+        .modal {
+            display: none; 
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            text-align: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close-btn:hover { color: #000; }
+
+        .modal h2 {
+            margin-bottom: 15px;
+            color: #1e3a8a;
+        }
+
+        .modal input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #10b981;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover { background-color: #059669; }
+
+        /* WhatsApp Floating Action Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-decoration: none;
+            z-index: 999;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Sabari Project Studio</h1>
+        <p>Welcome to Academic & Real-Time Project Center. Explore and Access Open Source Code.</p>
+    </header>
+
+    <div class="container">
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500&auto=format&fit=crop&q=60" alt="Beauty Parlour" class="project-img">
+                <div class="project-info">
+                    <h3>Beauty Parlour System</h3>
+                    <p>A Web Application for salon client management, appointment bookings, and dynamic business tracking dashboards.</p>
+                    <div class="visit-btn" onclick="openProject('Beauty Parlour Management System', 'https://github.com')">Visit Project</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1508962914676-134849a727f0?w=500&auto=format&fit=crop&q=60" alt="Traffic App" class="project-img">
+                <div class="project-info">
+                    <h3>Traffic Management App</h3>
+                    <p>Secure Blockchain-based Android application tailored for traffic penalty collection and transparent digital logging.</p>
+                    <div class="visit-btn" onclick="openProject('Blockchain Traffic Management App', 'https://github.com')">Visit Project</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500&auto=format&fit=crop&q=60" alt="Flip Book" class="project-img">
+                <div class="project-info">
+                    <h3>3D Digital Flip-Book</h3>
+                    <p>An interactive dynamic story-book with premium visual 3D page-turn actions built completely on CSS and HTML5 structures.</p>
+                    <div class="visit-btn" onclick="openProject('3D Digital Flip-Book', 'https://github.com')">Visit Project</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=60" alt="SPA Dashboard" class="project-img">
+                <div class="project-info">
+                    <h3>Dynamic SPA Dashboard</h3>
+                    <p>A fast Single Page Application (SPA) tracking client metrics and showcasing modern data analytics layouts.</p>
+                    <div class="visit-btn" onclick="openProject('Dynamic SPA Dashboard', 'https://github.com')">Visit Project</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=500&auto=format&fit=crop&q=60" alt="Telecom Network" class="project-img">
+                <div class="project-info">
+                    <h3>5G Core Telecom Hub</h3>
+                    <p>Simulating structural parameters and flow metrics inside 5G Core configurations for telecom learning.</p>
+                    <div class="visit-btn" onclick="openProject('5G Core Telecom Hub', 'https://github.com')">Visit Project</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=500&auto=format&fit=crop&q=60" alt="Cricket Stadium" class="project-img">
+                <div class="project-info">
+                    <h3>Cricket Fan-Edit Portfolio</h3>
+                    <p>A multimedia heavy layout built to seamlessly manage high definition sports content and smooth filter parameters.</p>
+                    <div class="visit-btn" onclick="openProject('Cricket Fan-Edit Portfolio', 'https://github.com')">Visit Project</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=500&auto=format&fit=crop&q=60" alt="E-Commerce" class="project-img">
+                <div class="project-info">
+                    <h3>E-Commerce Cart Engine</h3>
+                    <p>An interactive shopping application module with total checkout calculation logic via plain JavaScript algorithms.</p>
+                    <div class="visit-btn" onclick="openProject('E-Commerce Cart Engine', 'https://github.com')">Visit Project</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&auto=format&fit=crop&q=60" alt="Education" class="project-img">
+                <div class="project-info">
+                    <h3>Student Grade Analyzer</h3>
+                    <p>Academic data compiler which accepts multiple subject scores and graphs individual ranks automatically.</p>
+                    <div class="visit-btn" onclick="openProject('Student Grade Analyzer', 'https://github.com')">Visit Project</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=500&auto=format&fit=crop&q=60" alt="Weather" class="project-img">
+                <div class="project-info">
+                    <h3>Live Weather App</h3>
+                    <p>A simple yet effective application displaying dynamic climate reports using targeted external mock JSON arrays.</p>
+                    <div class="visit-btn" onclick="openProject('Live Weather App', 'https://github.com')">Visit Project</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1484480974693-2ca0a79fb36b?w=500&auto=format&fit=crop&q=60" alt="Task Planner" class="project-img">
+                <div class="project-info">
+                    <h3>Digital Task Planner</h3>
+                    <p>A customized To-Do engine with local storage capability, tracking pending development assignments smoothly.</p>
+                    <div class="visit-btn" onclick="openProject('Digital Task Planner', 'https://github.com')">Visit Project</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalProjectName">Project Title</h2>
+            <p style="font-size: 0.9rem; color: #555; margin-bottom: 10px;">Please enter your details to access the source file.</p>
+            
+            <form id="accessForm" onsubmit="handleFormSubmit(event)">
+                <input type="text" id="visitorName" placeholder="Your Name" required>
+                <input type="tel" id="visitorPhone" placeholder="Mobile Number" pattern="[0-9]{10}" title="Please enter a 10 digit phone number" required>
+                <button type="submit" class="submit-btn">Access Project Details</button>
+            </form>
+        </div>
+    </div>
+
+    <a href="https://wa.me/918825753358?text=Hi%20Sabari,%20I%20am%20interested%20in%20your%20Sabari%20Project%20Studio%20source%20codes!" 
+       class="whatsapp-btn" 
+       target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        let currentTargetUrl = "";
+
+        // Function to Open the Popup Modal
+        function openProject(projectName, projectUrl) {
+            document.getElementById('modalProjectName').innerText = projectName;
+            currentTargetUrl = projectUrl; // Stores the URL for future redirect
+            document.getElementById('projectModal').style.display = 'flex';
+        }
+
+        // Function to Close the Popup Modal
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+            document.getElementById('accessForm').reset(); // Clear form inputs
+        }
+
+        // Handle Visitor Form Data
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Stop standard page reload
+            
+            const name = document.getElementById('visitorName').value;
+            const phone = document.getElementById('visitorPhone').value;
+
+            // Simple Javascript Action Notification
+            alert("Welcome " + name + " (" + phone + ")! Access granted. Opening project repository...");
+            
+            closeModal();
+            
+            // Redirects visitor to the open-source code link
+            window.open(currentTargetUrl, '_blank'); 
+        }
+
+        // Close modal automatically if user clicks anywhere outside the card box
+        window.onclick = function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
